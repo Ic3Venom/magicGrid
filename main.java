@@ -1,32 +1,80 @@
-package magic_numbers;
-
-public class main
-{
-    public static void main(String[] args)
-    {
-        System.out.println("Testing");
-    }
-
-    public static int[][] generateGrid(int len)
-    {
-        return null;
-    }
-
-    public static boolean isMagic(int[][] grid)
-    {
+        int test = 0;
         int base = 0;
 
-        for(int i = 0; i < int[0].length; i++)
+        for(int i = 0; i < grid[0].length; i++)
         {
-            base += len[0][i];
+            base += grid[0][i];
         }
-
+        
         // Horizontal
+        for(int i = 0; i < grid.length; i++)
+        {
+            test = 0;
+            
+            for(int j = 0; j < grid[i].length; j++)
+            {
+                test += grid[i][j];
+            }
+            
+            if( test != base )
+            {
+                return false;
+            }
+        }
         
         // Vertical
-
+        for(int i = 0; i < grid.length; i++)
+        {
+            test = 0;
+            
+            for(int j = 0; j < grid[i].length; j++)
+            {
+                test += grid[j][i];
+            }
+            
+            if( test != base )
+            {
+                return false;
+            }
+        }
+        
         // Diagional
-
+        for(int i = 0; i < grid.length; i++)
+        {
+            test = 0;
+            
+            for(int j = grid.length -1; j >= 0; j--)
+            {
+                test += grid[i][j];
+            }
+      
+            if( test != base )
+            {
+                return false;
+            }
+        }
+        
+        for(int i = 0; i < grid.length; i++)
+        {
+            test += grid[i][i];
+            
+            if( test == base )
+            {
+                return false;
+            }
+        }
+        
         return true;
     }
-}
+    
+    public static void printGrid(int[][] grid)
+    {
+        for(int i = 0; i < grid.length; i++)
+        {
+            for(int j = 0; j < grid[i].length; j++)
+            {
+                System.out.print(grid[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
